@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>neo tester</title>
+    <meta
+      name="description"
+      content="A tiny live testbed — edit, push, watch Vercel redeploy."
+    />
+    <link rel="preconnect" href="https://esm.sh" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./config.js"></script>
+  </head>
+  <body>
+    <main class="shell">
+      <header class="head">
+        <div class="brand">
+          <span class="dot" aria-hidden="true"></span>
+          <h1>neo tester</h1>
+        </div>
+        <span id="mode" class="badge" title="storage backend">…</span>
+      </header>
+
+      <p class="lede">
+        Type a signal, hit send. Then edit a line in
+        <code>index.html</code>, push, and watch Vercel redeploy this page.
+      </p>
+
+      <form id="form" class="composer" autocomplete="off">
+        <input
+          id="input"
+          name="body"
+          maxlength="140"
+          placeholder="Leave a signal…"
+          aria-label="Your message"
+          required
+        />
+        <button type="submit">Send</button>
+      </form>
+
+      <ul id="list" class="feed" aria-live="polite"></ul>
+      <p id="empty" class="empty">No signals yet. Be the first.</p>
+
+      <footer class="foot">
+        <span id="status">ready</span>
+        <span class="sep">·</span>
+        <span>edit → <code>git push</code> → live</span>
+      </footer>
+    </main>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
