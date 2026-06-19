@@ -11,7 +11,10 @@ const els = {
   empty: document.getElementById("empty"),
   mode: document.getElementById("mode"),
   status: document.getElementById("status"),
+  count: document.getElementById("count"),
 };
+
+const MAX = 140;
 
 const LOCAL_KEY = "neo-tester:messages";
 
@@ -90,11 +93,21 @@ async function refresh() {
   }
 }
 
+function updateCount() {
+  const left = MAX - els.input.value.length;
+  els.count.textContent = String(left);
+  els.count.classList.toggle("low", left <= 20);
+}
+
+els.input.addEventListener("input", updateCount);
+updateCount();
+
 els.form.addEventListener("submit", async (e) => {
   e.preventDefault();
   const body = els.input.value.trim();
   if (!body) return;
   els.input.value = "";
+  updateCount();
   els.status.textContent = "saving…";
   try {
     await store.add(body);
